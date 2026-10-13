@@ -1,0 +1,88 @@
+[server]
+host = 0.0.0.0
+port = 7125
+klippy_uds_address = /home/cloud/printer_data/comms/klippy.sock
+
+[authorization]
+trusted_clients = 
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+cors_domains = 
+	*.lan
+	*.local
+	*://localhost
+	*://localhost:*
+	*://my.mainsail.xyz
+	*://app.fluidd.xyz
+
+[octoprint_compat]
+
+[history]
+
+[file_manager]
+enable_object_processing = True
+
+[webcam q2]
+service = mjpegstreamer-adaptive
+stream_url = http://192.168.2.210/webcam/?action=stream
+snapshot_url = http://192.168.2.210/webcam/?action=snapshot
+target_fps = 15
+aspect_ratio = 16:9
+
+[timelapse]
+output_path = ~/printer_data/timelapse/
+frame_path = /tmp/timelapse/printer
+
+[mmu_server]
+enable_file_preprocessor = True
+enable_toolchange_next_pos = True
+update_spoolman_location = True
+
+[spoolman]
+server = http://localhost:7912
+sync_rate = 5
+
+[update_manager]
+channel = stable
+refresh_interval = 168
+
+[update_manager q2-offload]
+type = git_repo
+path = /home/cloud/q2-offload
+origin = https://github.com/cedbossneo/q2-offload.git
+primary_branch = main
+managed_services = q2-offload
+
+[update_manager timelapse]
+type = git_repo
+primary_branch = main
+path = ~/moonraker-timelapse
+origin = https://github.com/mainsail-crew/moonraker-timelapse.git
+managed_services = klipper moonraker
+
+[update_manager mainsail-config]
+type = git_repo
+primary_branch = master
+path = ~/mainsail-config
+origin = https://github.com/mainsail-crew/mainsail-config.git
+managed_services = klipper
+
+[update_manager mainsail]
+type = web
+channel = stable
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+persistent_files = 
+	config.json
+
+[update_manager fluidd]
+type = web
+channel = stable
+repo = fluidd-core/fluidd
+path = ~/fluidd
+
