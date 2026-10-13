@@ -27,5 +27,5 @@ The `q2-offload` framework offloads heavy computing tasks (such as Moonraker, Ha
 
 ## 🤝 Credits & License
 
-* Base architecture by [cedbossneo/q2-offload](https://github.com).
+* Base architecture by https://github.com/cedbossneo/q2-offload
 * Distributed under the **GPL-3.0 License**.
